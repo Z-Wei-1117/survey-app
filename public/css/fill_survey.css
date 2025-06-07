@@ -1,0 +1,125 @@
+/* public/css/fill_survey.css */
+
+/* --- Survey Display Area --- */
+#survey-display-area header h1 {
+    margin-bottom: 0.5rem; /* 减小标题和描述之间的间距 */
+}
+#survey-display-area #survey-description-display {
+    color: var(--pico-muted-color); /* 描述文字颜色稍浅 */
+    margin-bottom: 1rem;
+}
+
+
+/* --- Question Item Styling --- */
+.question-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--pico-muted-border-color, #eee);
+}
+.question-item:last-of-type { /* 注意：这里用 last-of-type 可能更准确 */
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.question-item .question-text {
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    display: block;
+    line-height: 1.4; /* 增加行高，避免文字拥挤 */
+}
+.question-item .question-text .required-indicator {
+    color: var(--pico-form-element-invalid-active-border-color, red);
+    margin-left: 0.25rem;
+    font-weight: bold; /* 让星号也加粗 */
+}
+
+/* Options Group (radio/checkbox) Styling */
+.question-item .options-group {
+    margin-top: 0.5rem; /* 问题文本和选项组之间的间距 */
+}
+.question-item .options-group label {
+    display: block;
+    margin-bottom: 0.75rem; /* 选项之间的垂直间距 */
+    /* Pico handles a lot of the input + text styling within the label */
+}
+.question-item .options-group label:last-child {
+    margin-bottom: 0;
+}
+
+.question-item textarea {
+    min-height: 80px;
+    /* Pico will style the textarea */
+}
+
+/* --- Button and Message Styling --- */
+#submit-answers-btn,
+#survey-header-separator {
+    display: none; /* Initially hidden, shown by JS */
+}
+
+#loading-message p, /* Pico's aria-busy handles the visual */
+#success-message-fill p,
+#error-message-fill p {
+    margin-bottom: 1rem; /* 确保消息段落有下边距 */
+}
+#success-message-fill p:last-of-type { /* 最后一个引导段落下边距可以大一些 */
+    margin-bottom: 1.5rem;
+}
+#success-message-fill hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-color: var(--pico-muted-border-color);
+}
+
+/* Styling for buttons in the success message footer */
+#success-message-fill footer {
+    display: flex; /* 让按钮并排显示 */
+    gap: 1rem;     /* 按钮之间的间距 */
+    flex-wrap: wrap; /* 在小屏幕上允许换行 */
+    margin-top: 1rem; /* 按钮组与上方文字的间距 */
+}
+#success-message-fill footer a[role="button"] {
+    /* Pico's role="button" and classes like .contrast, .secondary handle most styling */
+    /* If you need to force them to take equal width or stack differently on small screens, add here */
+    flex-grow: 1; /* 让按钮平分可用空间 (如果只有两个按钮) */
+    text-align: center; /* 确保按钮内文字居中 */
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 576px) {
+    #submit-answers-btn {
+        width: 100%;
+        margin-top: 1rem; /* 确保与最后一个问题有间距 */
+    }
+
+    /* 在小屏幕上，成功消息里的按钮也堆叠 */
+    #success-message-fill footer {
+        flex-direction: column; /* 按钮垂直堆叠 */
+    }
+    #success-message-fill footer a[role="button"] {
+        width: 100%; /* 堆叠时按钮撑满宽度 */
+        margin-bottom: 0.5rem; /* 堆叠按钮之间的间距 */
+    }
+    #success-message-fill footer a[role="button"]:last-child {
+        margin-bottom: 0;
+    }
+}
+
+hr {
+  border: none;
+  border-top: 3px double #333;
+  color: #333;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
+}
+
+hr::after {
+  background: #fff;
+  content: "§";
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
+}

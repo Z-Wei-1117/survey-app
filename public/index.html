@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线调查问卷系统 - 动态背景</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@latest/css/pico.min.css">
+    <!-- style.css 应该主要包含非首页的 body 背景和通用组件样式 -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Ensure html and body take full height for centering */
+        html, body.index-page-body-override { /* Using a more specific class for index body */
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.index-page-body-override {
+            display: flex;
+            flex-direction: column;
+            align-items: center;    /* Horizontally center flex items */
+            justify-content: center; /* Vertically center flex items */
+            overflow: hidden;       /* Prevent scrollbars due to Vanta or slight overflows */
+            position: relative;     /* For z-index context of children */
+            text-align: center;     /* Default text alignment */
+            /* Vanta will set its own background on #vanta-background-container */
+        }
+
+        #vanta-background-container { /* Renamed for clarity */
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Behind main content */
+        }
+
+        /* This is the direct child of body that will be centered */
+        .index-content-wrapper {
+            position: relative; /* So z-index takes effect */
+            z-index: 1;         /* Above Vanta background */
+            padding: 1rem;      /* Padding around the article card */
+            max-width: 580px;   /* Max width of the centered content block */
+            width: 90%;         /* Responsive width */
+            /* Flex centering from body should handle its position.
+               No explicit margin: auto needed here for centering if body is flex. */
+        }
+
+        .index-content-wrapper article { /* The actual card */
+            background-color: rgba(var(--pico-card-background-color-rgb, 255, 255, 255), 0.88); /* Adjust alpha as needed */
+            padding: 2rem 1.5rem; /* Padding inside the card */
+            border-radius: var(--pico-border-radius);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            color: var(--pico-color); /* Text color based on Pico theme */
+        }
+
+        .index-content-wrapper article header h1 {
+             margin-top: 0; /* Remove Pico's default h1 margin-top if any */
+             margin-bottom: 0.75rem;
+             color: var(--pico-color); /* Or a more contrasting color if needed */
+        }
+        .index-content-wrapper article p {
+             color: var(--pico-secondary); /* Pico's secondary text color */
+             margin-bottom: 2rem;
+        }
+        .index-content-wrapper article footer {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile first: stacked */
+            gap: 1rem;
+        }
+        @media (min-width: 576px) { /* Pico's sm breakpoint */
+            .index-content-wrapper article footer {
+                grid-template-columns: 1fr 1fr; /* Side-by-side on larger screens */
+            }
+        }
+    </style>
+</head>
+<body class="index-page-body-override"> <!-- Specific class for index body -->
+    <div id="vanta-background-container"></div> <!-- Vanta will attach here -->
+
+    <!-- This wrapper will be centered by the body's flex properties -->
+    <div class="index-content-wrapper">
+        <article> <!-- Pico's article styling will apply here -->
+            <header>
+                <h1>欢迎使用在线调查问卷</h1>
+                <p>轻松创建、分享并查看您的调查结果。</p>
+            </header>
+            <footer>
+                <a href="create_survey.html" role="button" class="contrast">创建新问卷</a>
+                <a href="view_results_access.html" role="button">查看问卷结果</a>
+            </footer>
+        </article>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <!-- Make sure you are using the correct Vanta effect script -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script> <!-- Or vanta.clouds.min.js -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            VANTA.HALO({ // Or VANTA.CLOUDS if you switched back
+                el: "#vanta-background-container", // Ensure this matches the div ID
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                // --- HALO (or CLOUDS) Parameters ---
+                // Example HALO (Dark background, Purple Halo)
+                backgroundColor: 0x0c0c1c,
+                baseColor: 0x6c63ff,
+                amplitudeFactor: 1.2,
+                size: 1.5,
+                // Example CLOUDS (if you revert)
+                // backgroundColor: 0x0a192f,
+                // skyColor: 0x1a73e8,
+                // cloudColor: 0xf0f8ff,
+                // cloudShadowColor: 0x05101c,
+                // sunColor: 0xffab40,
+                // sunGlareColor: 0xff7043,
+                // sunlightColor: 0xffcc80,
+                // speed: 0.7,
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light"> <!-- Pico.css data-theme attribute -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建新调查问卷 - Pico</title>
+    <!-- 1. Normalize.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- 2. Pico.css (using latest version) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@latest/css/pico.min.css">
+    <!-- 3. Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="container">
+        <article>
+            <header>
+                <h1>创建新调查问卷</h1>
+            </header>
+
+            <form id="create-survey-form">
+                <label for="survey-title">
+                    问卷标题
+                    <input type="text" id="survey-title" name="survey-title" placeholder="请输入问卷标题" required>
+                </label>
+
+                <label for="survey-description">
+                    问卷描述 (可选)
+                    <textarea id="survey-description" name="survey-description" rows="3" placeholder="请输入问卷描述"></textarea>
+                </label>
+
+                <hr>
+
+                <h2>问题列表</h2>
+                <div id="questions-container">
+                    <!-- 问题将通过JS动态添加到这里 -->
+                </div>
+
+                <footer>
+                    <button type="button" id="add-question-btn">添加问题</button>
+                </footer>
+
+                <hr>
+                <button type="submit" id="submit-survey-btn" class="contrast">创建问卷</button>
+            </form>
+        </article>
+
+        <article id="survey-links" style="display: none;" aria-live="polite">
+            <header><h3>问卷创建成功!</h3></header>
+            <p><strong>分享链接:</strong> <a href="#" id="share-link" target="_blank"></a></p>
+            <p><strong>结果查看凭证:</strong> <strong id="result-code"></strong> (请妥善保管此凭证)</p>
+        </article>
+
+        <article id="error-message" style="display: none;" class="error-box" role="alert">
+            <!-- Error message will be injected here by JS -->
+        </article>
+
+    </main>
+
+    <script src="js/create_survey.js"></script>
+</body>
+</html>

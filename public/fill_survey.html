@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>填写调查问卷</title>
+    <!-- 1. Normalize.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- 2. Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@latest/css/pico.min.css">
+    <!-- 3. Custom Styles -->
+    <link rel="stylesheet" href="css/style.css"> <!-- 复用通用样式 -->
+    <link rel="stylesheet" href="css/fill_survey.css"> <!-- 填写页面特定样式 -->
+</head>
+<body>
+    <main class="container">
+        <article id="survey-display-area">
+            <header>
+                <h1 id="survey-title-display">加载问卷中...</h1>
+            </header>
+            <p id="survey-description-display" style="display: none;"></p> <!-- 初始隐藏描述，有内容再显示 -->
+            <hr id="survey-header-separator" style="display: none;">
+
+            <form id="fill-survey-form">
+                <div id="questions-list-container">
+                    <!-- 问题将通过JS动态渲染到这里 -->
+                </div>
+
+                <button type="submit" id="submit-answers-btn" class="contrast" style="display: none;">提交问卷</button>
+            </form>
+        </article>
+
+        <article id="loading-message" style="display: block;">
+            <p aria-busy="true">正在加载问卷数据，请稍候...</p>
+        </article>
+
+        <article id="error-message-fill" style="display: none;" class="error-box" role="alert">
+            <!-- Error messages will be displayed here by JS -->
+        </article>
+
+        <article id="success-message-fill" style="display: none;" aria-live="polite">
+             <header><h3>提交成功!</h3></header>
+            <p>感谢您的参与！您的回答已成功提交。</p>
+            <hr />
+            <p>您也想创建自己的调查问卷吗？</p>
+            <footer>
+                <a href="create_survey.html" role="button" class="contrast">创建我的问卷</a>
+                <a href="index.html" role="button" class="secondary">返回首页</a>
+            </footer>
+        </article>
+
+    </main>
+
+    <script src="js/fill_survey.js"></script>
+</body>
+</html>

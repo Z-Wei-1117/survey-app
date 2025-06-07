@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷结果详情</title>
+    <!-- 1. Normalize.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- 2. Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@latest/css/pico.min.css">
+    <!-- 3. Custom Styles -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Common styles -->
+    <link rel="stylesheet" href="css/display_results.css"> <!-- Specific styles for this page -->
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <h1 id="survey-title-results"></h1>
+            <a href="view_results_access.html" role="button" class="secondary outline back-link">重新输入数字凭证</a>
+        </header>
+
+        <article id="results-content-area" style="display: none;">
+            <!-- 筛选器区域已被移除 -->
+            <!--
+            <section class="filter-section" id="filter-controls-area">
+                <h3>筛选条件:</h3>
+                <div id="filters-placeholder"></div>
+            </section>
+            -->
+
+            <section class="pagination-section">
+                <div class="pagination-controls">
+                    <button id="prev-response" class="outline" disabled>上一份</button>
+                    <span class="page-info" id="page-info-display">第 0 / 0 份答卷</span>
+                    <button id="next-response" class="outline" disabled>下一份</button>
+                </div>
+            </section>
+
+            <section class="response-details-section">
+                <article class="response-details-card" id="current-response-area">
+                    <p class="no-results-message">等待数据加载。</p>
+                    <!-- Individual response details will be rendered here -->
+                </article>
+            </section>
+        </article>
+
+        <article id="loading-message-results" style="display: block;">
+            <p aria-busy="true">正在加载问卷结果，请稍候...</p>
+        </article>
+
+        <article id="error-message-results" style="display: none;" class="error-box" role="alert">
+            <!-- Error messages will be displayed here -->
+        </article>
+
+    </main>
+
+    <script src="js/display_results_detailed.js"></script>
+</body>
+</html>
